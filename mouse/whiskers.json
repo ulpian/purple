@@ -1,0 +1,21 @@
+{
+  "name": "mouse",
+  "version": "0.1.0",
+  "author": "Ulpian Morina <ulpianmorina@gmail.com>",
+  "description": "a tiny lightweight php mvc framework",
+  "root": "/mouse/",
+  "contributors": [],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ulpmori/mouse.git"
+  },
+  "keywords": [
+    "php",
+    "mvc",
+    "framework"
+  ],
+  "den" : {
+    "mod_name"   :  "mod_url_to_source"
+  },
+  "license": "MIT"
+}
