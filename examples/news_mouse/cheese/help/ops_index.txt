@@ -1,0 +1,2 @@
+An operations index listing all the classes and functions and what is possible,
+very short term until a fully documented wiki is started.

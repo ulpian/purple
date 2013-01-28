@@ -1,0 +1,6 @@
+{
+  "den" : {
+    "mongod"   :  "http://labs.gurron.com/trove/mouselib/mongodv0.1.php",
+    "bittorrentdr"   :  "http://labs.gurron.com/trove/mouselib/bittorrentdr.php"
+  }
+}
