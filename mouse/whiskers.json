@@ -2,7 +2,7 @@
   "name": "mouse",
   "version": "0.1.0",
   "author": "Ulpian Morina <ulpianmorina@gmail.com>",
-  "description": "a tiny news site built with the mouse framework",
+  "description": "a lightweight rapid web development framework",
   "root": "/mouse/",
   "contributors": [],
   "repository": {
@@ -15,13 +15,12 @@
   	"pass": "",
   	"port": "8080"
   },
-  "ke`words": [
-    "example",
-    "news",
+  "keywords": [
+    "framework",
     "mouse"
   ],
   "den" : {
     "none": "-"
   },
   "license": "MIT"
-}
+ }

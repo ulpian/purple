@@ -15,7 +15,7 @@
   	"pass": "",
   	"port": "8080"
   },
-  "ke`words": [
+  "keywords": [
     "example",
     "news",
     "mouse"
@@ -24,4 +24,4 @@
     "none": "-"
   },
   "license": "MIT"
-}
+ }
