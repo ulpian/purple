@@ -38,7 +38,7 @@
 				
 				<br />
 				
-				<h3>quickstart & guide</h3>
+				<h3>quickstart &amp; guide</h3>
 				<p class="lead">
 					Tutorial and info on getting started plus some rules &amp; conventions.
 				</p>
@@ -58,7 +58,7 @@
 				</p>
 				
 				<div class="well">
-					http://www.foo.com/<a style="color:#336699;">_class_</a>/<a style="color:#ff6600;">_method_</a>/<a style="color:#158C00;">_value1-value2_</a>/<a style="color:#336699;">_class2_</a>/<a style="color:#ff6600;">_method2_</a>/<a style="color:#158C00;">_value1-value2-value3-value4..._</a>
+					http://www.foo.com/<a style="color:#336699;">_class_</a>/<a style="color:#ff6600;">_method_</a>/<a style="color:#158C00;">_value1-value2_</a>/<a style="color:#336699;">_class2_</a>/<a style="color:#ff6600;">_method_</a>/<a style="color:#158C00;">_value1-value2-value3-value4..._</a>
 				</div>
 				
 				<p class="lead">

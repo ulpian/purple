@@ -81,66 +81,23 @@ class router
 					$cont = $step.'_Controller';
 					
 					// check for the type
-					if(isset($this->path[$ord + 1]))
-					{
-						if(!empty($this->path[$ord + 1]))
-						{
-							// type is next to act
-							$type = $this->path[$ord + 1];
-						}
-						else
-						{
-						// empty goes to home
-							$type = NULL;
-						}
-					}
-					else
-					{
-						// empty
-						$type = NULL;
-					}
+					$type = (isset($this->path[$ord + 1]) || empty($this->path[$ord + 1])) 
+						? NULL : $this->path[$ord + 1];
+									
 					
 					// check for the vals
-					if(isset($this->path[$ord + 2]))
-					{
-						if(!empty($this->path[$ord + 2]))
-						{
-							// vals is next to type
-							$vals = $this->path[$ord + 2];
-						}
-						else
-						{
-							// empty
-							$vals = NULL;
-						}
-					}
-					else
-					{
-						// empty
-						$vals = NULL;
-					}
+					$vals = (isset($this->path[$ord + 2]) || empty($this->path[$ord + 2])) 
+						? NULL : $this->path[$ord + 2];
+									
 					
 					// check for the format
-					if(isset($this->path[$ord + 3]))
-					{
-						if(!empty($this->path[$ord + 3]) & substr($this->path[$ord + 3], 0, 1) == '.')
-						{
-							// format is next to vals (with no .)
-							$respFormat = str_replace('.', '', $this->path[$ord + 3]);
-						}
-					}
-						
-						// if more than one val
-						if(!empty($vals) & strstr($vals,'-'))
-					{
-							// place all vals as array
-							$vals = explode('-', $vals);
-						}
-						else
-						{
-							// single term still as array of vals
-							$vals = array($vals);
-						}
+					$respFormat = (isset($this->path[$ord + 3]) || !empty($this->path[$ord + 3]) & substr($this->path[$ord + 3], 0, 1) == '.') 
+						? str_replace('.', '', $this->path[$ord + 3]) : NULL;
+					
+					
+					// if more than one val
+					$vals = (!empty($vals) & strstr($vals,'-')) 
+						? explode('-', $vals) : array($vals);
 						
 					// ****
 					// Running the class and methods
@@ -177,6 +134,11 @@ class router
 				{
 					throw new Exception('A controller for this does not exist.');
 				}
+			}
+			else
+			{
+				// no controller so continue
+				continue;
 			}
 		}
 	}

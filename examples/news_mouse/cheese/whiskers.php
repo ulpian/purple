@@ -31,6 +31,8 @@ class Whiskers
 			
 			// check root
 			Whiskers::rootchk();
+			
+			// run through composer actions for dependencies
 		}
 		else
 		{
@@ -157,8 +159,8 @@ RewriteRule ^([a-zA-Z0-9]+) index.php?page=$1 [L,NC]
 		}
 		else
 		{
-			// return nothing
-			return NULL;
+			// return nothing and continue
+			continue;
 		}
 	}
 }
