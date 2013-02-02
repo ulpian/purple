@@ -54,7 +54,7 @@
 				</div>
 				
 				<p>
-					However with mouse you can call multiple classes in once url, as long as the same class is not called more than once.
+					However with mouse you can call multiple classes in one url, as long as the same class is not called more than once.
 				</p>
 				
 				<div class="well">

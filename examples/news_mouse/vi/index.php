@@ -38,7 +38,7 @@
 				
 				<br />
 				
-				<h3>quickstart & guide</h3>
+				<h3>quickstart &amp; guide</h3>
 				<p class="lead">
 					Tutorial and info on getting started plus some rules &amp; conventions.
 				</p>
@@ -54,7 +54,7 @@
 				</div>
 				
 				<p>
-					However with mouse you can call multiple classes in once url, as long as the same class is not called more than once.
+					However with mouse you can call multiple classes in one url, as long as the same class is not called more than once.
 				</p>
 				
 				<div class="well">
