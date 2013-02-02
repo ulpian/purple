@@ -81,13 +81,13 @@ class router
 					$cont = $step.'_Controller';
 					
 					// check for the type
-					$type = (isset($this->path[$ord + 1]) || empty($this->path[$ord + 1])) 
-						? NULL : $this->path[$ord + 1];
+					$type = (isset($this->path[$ord + 1]) || !empty($this->path[$ord + 1])) 
+						? $this->path[$ord + 1] : NULL;
 									
 					
 					// check for the vals
-					$vals = (isset($this->path[$ord + 2]) || empty($this->path[$ord + 2])) 
-						? NULL : $this->path[$ord + 2];
+					$vals = (isset($this->path[$ord + 2]) || !empty($this->path[$ord + 2])) 
+						? $this->path[$ord + 2] : NULL;
 									
 					
 					// check for the format
