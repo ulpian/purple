@@ -83,16 +83,18 @@ class router
 					// check for the type
 					$type = (isset($this->path[$ord + 1]) || !empty($this->path[$ord + 1])) 
 						? $this->path[$ord + 1] : NULL;
-									
+					
 					
 					// check for the vals
 					$vals = (isset($this->path[$ord + 2]) || !empty($this->path[$ord + 2])) 
 						? $this->path[$ord + 2] : NULL;
-									
+					
 					
 					// check for the format
-					$respFormat = (isset($this->path[$ord + 3]) || !empty($this->path[$ord + 3]) & substr($this->path[$ord + 3], 0, 1) == '.') 
-						? str_replace('.', '', $this->path[$ord + 3]) : NULL;
+					$respFormat = (isset($this->path[$ord + 3]) || !empty($this->path[$ord + 3])) 
+						? $respFormat = (substr($this->path[$ord + 3], 0, 1) == '.') 
+							? str_replace('.', '', $this->path[$ord + 3]) : NULL 
+								: NULL;
 					
 					
 					// if more than one val
@@ -128,16 +130,22 @@ class router
 					else
 					{
 						throw new Exception('The '.$type.' method in this controller does not exist.');
+						// so continue
+						continue;
 					}
 				}
 				else
 				{
-					throw new Exception('A controller for this does not exist.');
+					throw new Exception('A controller for this step does not exist.');
+					// so continue
+					continue;
 				}
 			}
 			else
 			{
-				// no controller so continue
+				// no controller
+				throw new Exception('A controller file for this step does not exist.');
+				// so continue
 				continue;
 			}
 		}

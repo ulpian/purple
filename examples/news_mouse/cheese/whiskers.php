@@ -157,10 +157,5 @@ RewriteRule ^([a-zA-Z0-9]+) index.php?page=$1 [L,NC]
 			// has slashes so there is
 			return utf8_encode(htmlentities($rootpath));
 		}
-		else
-		{
-			// return nothing and continue
-			continue;
-		}
 	}
 }
