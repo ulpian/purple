@@ -1,22 +1,31 @@
 <?php
-// ---------------------------------------------------
-// Routing
-// -> __construct routing system
-// -> /class/function/varA-varB-varC(unlimited)/.format
-// ---------------------------------------------------
+/**
+ * router
+ * constructs a routing system that follows mouses URL devisions;
+ * </class/method/var1-var2-var3(no-limit)/.format>
+ * this is considered one operation and there may be multiple operations 
+ * of this kind in one page, this means multiple classes can be called 
+ * in one page. The "/.format" is not required but may be useful.
+ * </class/method/var1-var2-var3(no-limit)>
+ * 
+ * @todo finalise the /.format
+ * 
+ * @author Ulpian Morina
+ * @date 04/02/2013
+ */
 include 'cheese/whiskers.php';
 include 'cheese/vurr.php';
 
 // routing around
 class router
 {
-	// get the url
+	/**@type string|null public url variable to*/
 	public $url;
 	
 	// whiskroot
 	private $whiskroot;
 	
-	// seperate the requests coming
+	/**@type array|null the path of the operations*/
 	private $path = array();
 	
 	function __construct()
@@ -43,7 +52,9 @@ class router
 		}
 	}
 	
-	// load the router and scripts
+	/**
+	 * method for loading the router and scripts
+	 */
 	function bake()
 	{
 		// bake the routes based on section => (action => query) format

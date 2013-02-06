@@ -1,6 +1,14 @@
 <?php
-
-// curl class
+/**
+ * murl
+ * embeded simplified curl class
+ * 
+ * @todo implement access for potential custom headers
+ * @todo implement possibility to post
+ * 
+ * @author Ulpian Morina
+ * @date 04/02/2013
+ */
 class murl
 {
 	// the curl opt
@@ -9,7 +17,11 @@ class murl
 	private $curlop_head;
 	private $curlop_retran;
 	
-	// get contents
+	/**
+	 * get contents of a page via curl
+	 * 
+	 * @param string $url url address to get content
+	 */
 	function get_cont($url)
 	{
 		// init

@@ -1,21 +1,25 @@
 <?php
-// ---------------------------------------------------
-// One line commands for viewing / presenting
-// -> render the data into a view page
-// -> render data as json page
-// ---------------------------------------------------
+/**
+ * vurr
+ * class which binds the data to specific arrays and 
+ * renders the appropriate view or renders a json presentation of the data.
+ * 
+ * @author Ulpian Morina
+ * @date 04/02/2013
+ */
 class vurr
 {
-	// page name
+	/**@type string|null name of the file to present data to*/
 	public $pgnm;
 	
-	// page data
+	/**@type array|null aggregated arrays of data to present to the view*/
 	public $pdata = array();
 	
-	// ---------------------------------------------------
-	// Rendering the view to page on vi class
-	// -> render to view
-	// ---------------------------------------------------
+	/**
+	 * The main page render
+	 * 
+	 * @param string $pgnm the file name of the view file to render
+	 */
 	function render($pgnm)
 	{
 		// get the pg to access
@@ -49,10 +53,13 @@ class vurr
 		}
 	}
 	
-	// ---------------------------------------------------
-	// JSON redering of data
-	// -> render the data as a json page
-	// ---------------------------------------------------
+	/**
+	 * The json page render
+	 * 
+	 * @param string $pgnm the file name of the view file to render but data will be presented as a json encoded object
+	 * 
+	 * @return json_object
+ 	 */
 	function render_json($pgnm)
 	{
 		// data
@@ -71,7 +78,15 @@ class vurr
 		return $data;
 	}
 	
-	// add data for the view / presentation
+	/**
+	 * Binding the data for a specific page
+	 * 
+	 * @param string $pgnm the file name of the view file to render
+	 * @param string $datnm name of the data, this will be the identifier of the data
+	 * @param array $data the array of data to bind
+	 * 
+	 * @return void
+	 */
 	function set_data($pgnm, $datnm, array $data)
 	{
 		// set data => name
