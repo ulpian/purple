@@ -137,7 +137,8 @@ RewriteRule ^([a-zA-Z0-9]+) index.php?page=$1 [L,NC]
 		"AddType","AddHandler","Options",
 		"AddHandler","order","deny",
 		"allow","DirectoryIndex","Redirect",
-		"IndexIgnore");
+		"IndexIgnore"
+	);
 	
 	static function cleanroothpath($rootpath)
 	{

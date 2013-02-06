@@ -64,11 +64,12 @@ class router
 			{
 					// ===== get assoc files from the model and view ====== //
 					// check if this controller has a model
-					if(file_exists('mo/'.$step.'.php'))
-					{
+					(file_exists('mo/'.$step.'.php'))
+					?
 						// if model exists then get the model
-						include 'mo/'.$step.'.php';
-					}
+						include 'mo/'.$step.'.php'
+						
+					: NULL;
 					// =================================================== //
 				
 				// get the controller
@@ -89,7 +90,6 @@ class router
 					$vals = (isset($this->path[$ord + 2]) || !empty($this->path[$ord + 2])) 
 						? $this->path[$ord + 2] : NULL;
 					
-					
 					// check for the format
 					$respFormat = (isset($this->path[$ord + 3]) || !empty($this->path[$ord + 3])) 
 						? $respFormat = (substr($this->path[$ord + 3], 0, 1) == '.') 
@@ -106,24 +106,23 @@ class router
 					// ****
 					
 					// run class
-					if(isset($respFormat))
-					{
+					(isset($respFormat))
+					?
 						// send respFormat
-						$moco = new $cont($respFormat);
-					}
-					else
-					{
+						$moco = new $cont($respFormat)
+					:
 						// no respFormat to send
 						$moco = new $cont;
-					}
 					
 					// run function
-					if(method_exists($moco, $type))
-					{
+					(method_exists($moco, $type))
+					?
 						// run functions
-						$moco->$type($vals);
-					}
-					elseif(empty($type))
+						$moco->$type($vals)
+					:
+						NULL;
+					
+					if(empty($type))
 					{
 						// __construct called no need for exception
 					}
