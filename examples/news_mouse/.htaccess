@@ -4,6 +4,6 @@ RewriteCond %{REQUEST_FILENAME} !-l
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 
-Rewritebase /news_mouse/
+Rewritebase /mouse-codebase/
 
 RewriteRule ^([a-zA-Z0-9]+) index.php?page=$1 [L,NC]

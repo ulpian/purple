@@ -1,19 +1,20 @@
 <?php
 
-// main controller
-class home_Controller
+# main controller
+class home_Controller extends moco
 {
-	// vurr init'd class
-	private $miew;
-	
-	function __construct()
+	function render ()
 	{
-		// init classes
-		$this->miew = new vurr;
-		
-		// load model information
-		
-		// send respFormat
-		$this->miew->render('index');
+		$this->miew->pgnm = 'index';
+
+		# should be on the model
+		$whisk = file_get_contents('whiskers.json');
+
+		$dev_data = ['whiskers' => $whisk];
+
+		$this->miew->data('config', $dev_data);
+
+		# send respFormat
+		$this->miew->render();
 	}
 }

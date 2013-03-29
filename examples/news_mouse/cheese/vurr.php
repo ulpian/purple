@@ -13,39 +13,78 @@ class vurr
 	public $pgnm;
 	
 	/**@type array|null aggregated arrays of data to present to the view*/
-	public $pdata = array();
+	public $pdata = [];
+
+	/**@type object| mustache class*/
+	public $mustake;
 	
+	/**
+	 * construction to the page name to render and inject
+	 * 
+	 * @param string $pgnm page name
+	 */
+	function __construct (string $pgnm = null)
+	{
+		# if set then set
+		if (!empty($pgnm))
+		{
+			$this->pgnm = $pgnm;
+		}
+
+		# mustache class
+		$this->mustake = new Mustache_Engine;
+	}
+
 	/**
 	 * The main page render
 	 * 
-	 * @param string $pgnm the file name of the view file to render
+	 * @param string $pgnm page name, null by default
+	 * @param string $suffix format suffix of the file, 'php' by default
 	 */
-	function render($pgnm)
-	{
-		// get the pg to access
-		$this->pgnm = $pgnm;
-		
-			// path to view file
-			$vfile = 'vi/'.$this->pgnm.'.php';
-		
-		// check if data exists
-		if(!empty($this->pdata))
+	function render ($pgnm = null, $suffix = 'miew')
+	{	
+		# if set then set
+		if (!empty($pgnm) & !empty($this->pgnm))
 		{
-			// decompose the pdata arr
+			$this->pgnm = $pgnm;
+		}
+		elseif (empty($pgnm))
+		{
+			$pgnm = $this->pgnm;
+		}
+		
+			# path to view file
+			$vfile = 'vi/'.$this->pgnm.'.'.$suffix;
+		
+		# check if data exists
+		if (!empty($this->pdata))
+		{
+			# decompose the pdata arr
 			$data = $this->pdata[$pgnm];
 			
-				// construct vars
+				# construct vars if not as mustache
+				/*
 				foreach($data as $dat_k => $dat_v)
 				{
 					${$dat_k} = $dat_v;
 				}
+				*/
 		}
 		
-		// check if view exists
-		if(file_exists($vfile))
+		# check if view exists
+		if (file_exists($vfile))
 		{
-			// include the view file
-			include $vfile;
+			# view file rendering
+
+			#mustache
+			echo $this->mustake->render(file_get_contents($vfile), $data);
+
+
+			# include for php
+			#include $vfile;
+
+			# jinja support
+
 		}
 		else
 		{
@@ -54,25 +93,22 @@ class vurr
 	}
 	
 	/**
-	 * The json page render
-	 * 
-	 * @param string $pgnm the file name of the view file to render but data will be presented as a json encoded object
+	 * The json page render, takes the name of the page set when class was initialsed
 	 * 
 	 * @return json_object
  	 */
-	function render_json($pgnm)
+	function render_json ()
 	{
-		// data
-		$data = $this->pdata[$pgnm];
+		# data
+		$data = $this->pdata[$this->pgnm];
 		
-		// headers
+		# headers
 		header('HTTP/1.1 200 OK');
 		header('Cache-Control: no-cache, must-revalidate');
 		header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
-		// set the content type
 		header('Content-type: application/json');
 		
-		// decompose the pdata arr
+		# decompose the pdata arr
 		$data = json_encode($this->pdata[$pgnm]);
 		
 		return $data;
@@ -87,9 +123,15 @@ class vurr
 	 * 
 	 * @return void
 	 */
-	function set_data($pgnm, $datnm, array $data)
+	function data ($datnm, array $data, string $pgnm = null)
 	{
-		// set data => name
+		# if there is an empty page name
+		if (empty($pgnm))
+		{
+			$pgnm = $this->pgnm;
+		}
+
+		# set data => name
 		$this->pdata[$pgnm][$datnm] = $data;
 	}
 }

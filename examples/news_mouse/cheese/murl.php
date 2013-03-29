@@ -11,7 +11,7 @@
  */
 class murl
 {
-	// the curl opt
+	# the curl opt
 	private $curlop_init;
 	private $curlop_url;
 	private $curlop_head;
@@ -22,22 +22,22 @@ class murl
 	 * 
 	 * @param string $url url address to get content
 	 */
-	function get_cont($url)
+	function get_cont ($url)
 	{
-		// init
+		# init
 		$this->curlop_init = curl_init();
 		$this->curlop_head = 0;
 		$this->curlop_retran = 1;
 		
-		// set options
+		# set options
 		curl_setopt($this->curlop_init, CURLOPT_URL, $url);
 		curl_setopt($this->curlop_init, CURLOPT_HEADER, $this->curlop_head);
 		curl_setopt($this->curlop_init, CURLOPT_RETURNTRANSFER, $this->curlop_retran);
 		
-		// get data
+		# get data
 		$data = curl_exec($this->curlop_init);
 		
-		// close
+		# close
 		curl_close($this->curlop_init);
 		
 		return $data;

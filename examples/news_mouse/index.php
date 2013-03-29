@@ -1,12 +1,12 @@
 <?php
-// get the router
+# get the router
 require_once 'cheese/router.php';
 
 $route = new router;
 
 try
 {
-	// bake our route
+	# bake our route
 	$route->bake();
 }
 catch (Exception $ex)
