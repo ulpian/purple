@@ -3,6 +3,11 @@
 # main controller
 class home_Controller extends moco
 {
+	function set ()
+	{
+
+	}
+
 	function render ()
 	{
 		$this->miew->pgnm = 'index';
@@ -10,9 +15,9 @@ class home_Controller extends moco
 		# should be on the model
 		$whisk = file_get_contents('whiskers.json');
 
-		$dev_data = ['whiskers' => $whisk];
+		$config = ['whiskers' => $whisk];
 
-		$this->miew->data('config', $dev_data);
+		$this->miew->data('config', $config);
 
 		# send respFormat
 		$this->miew->render();

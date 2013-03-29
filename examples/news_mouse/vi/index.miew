@@ -17,7 +17,7 @@
 				
 				<div class="alert alert-success">
 				  <b>Great!</b>
-				  Everything seems to be working fine. {{dev_info.name}}
+				  Everything seems to be working fine.
 				</div>
 				
 				<h1>you're using mouse :D</h1>

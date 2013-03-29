@@ -40,8 +40,9 @@ class vurr
 	 * 
 	 * @param string $pgnm page name, null by default
 	 * @param string $suffix format suffix of the file, 'php' by default
+	 * @param string $ten the template engine, default is mustache but support for 'twig', 'jinja' and 'none' simple php include with no template, is available
 	 */
-	function render ($pgnm = null, $suffix = 'miew')
+	function render ($pgnm = null, $suffix = 'miew', $ten = 'mustache')
 	{	
 		# if set then set
 		if (!empty($pgnm) & !empty($this->pgnm))
@@ -75,15 +76,26 @@ class vurr
 		if (file_exists($vfile))
 		{
 			# view file rendering
+			switch ($ten)
+			{
+				#mustache
+				case 'mustache':
 
-			#mustache
-			echo $this->mustake->render(file_get_contents($vfile), $data);
+					echo $this->mustake->render(file_get_contents($vfile), $data);
 
+					break;
 
-			# include for php
-			#include $vfile;
+				#none - native php
+				case 'none':
 
-			# jinja support
+					include $vfile;
+
+					break;
+
+				#twig
+
+				#jinja
+			}
 
 		}
 		else
