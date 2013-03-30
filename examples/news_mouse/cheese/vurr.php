@@ -64,12 +64,13 @@ class vurr
 			$data = $this->pdata[$pgnm];
 			
 				# construct vars if not as mustache
-				/*
-				foreach($data as $dat_k => $dat_v)
+				if ($ten == 'none')
 				{
-					${$dat_k} = $dat_v;
+					foreach($data as $dat_k => $dat_v)
+					{
+						${$dat_k} = $dat_v;
+					}
 				}
-				*/
 		}
 		
 		# check if view exists
