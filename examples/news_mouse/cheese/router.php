@@ -138,6 +138,14 @@ class router
 					
 					if (empty($type))
 					{
+						# run set function -if available
+						(method_exists($moco, 'set'))
+						?
+							# run set
+							$moco->set()
+						:
+							NULL;
+
 						# render the default
 						$moco->render();
 					}

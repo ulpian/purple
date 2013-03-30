@@ -5,7 +5,7 @@ class home_Controller extends moco
 {
 	function set ()
 	{
-
+		# things to set
 	}
 
 	function render ()
