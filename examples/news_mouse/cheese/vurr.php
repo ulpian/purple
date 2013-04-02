@@ -166,7 +166,8 @@ class vurr
 	 * Binding the page data (page contents include) to a specific page
 	 * 
 	 * @param string $datnm name of the page data, this will be the identifier of the page data
-	 * @param array $page the path to the page to include, begin from the 'vi' folder; e.g /vi/page.miew is simply 'page.miew', however subfolders must be included.
+	 * @param string $ppath name/url path of the page to be linked
+	 * @param string $page null by default as the page is usually set before however it can be individually set here
 	 * 
 	 * @return void
 	 * @todo return status message
@@ -178,6 +179,9 @@ class vurr
 		{
 			$page = $this->page;
 		}
+
+		# appinfo data
+		$this->appInfo();
 
 		# get the current data to send to the page before render
 		$data = $this->pdata[$page];
@@ -197,10 +201,12 @@ class vurr
 	}
 
 	/**
-	 * 
+	 * appInfo -
+	 * implements 'appinfo' block of information about the app that can used anywhere on the page
 	 * 
 	 * @return void
 	 * @todo return status message
+	 * @todo ability to add to the appInfo repository, cutome paths
 	 */
 	function appInfo ()
 	{
