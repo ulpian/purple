@@ -1,0 +1,255 @@
+#mast
+{
+	width: 100%;
+	height: 350px;
+}
+
+#postarr
+{
+	background: #fff;
+	height: 30px;
+	width: auto;
+
+	position: absolute;
+	border-radius: 3px;
+	padding: 5px;
+	right: 15px;
+	margin-top: 293px;
+}
+	#postarr_inp
+	{
+		width: 300px;
+	}
+
+	#postarr_but
+	{
+		height: 25px;
+		margin-top: -5px;
+		margin-left: 10px;
+		margin-right: 10px;
+
+	}
+
+#profile
+{
+	width: 550px;
+	height: auto;
+	position: absolute;
+	margin-top: 350px;
+	margin-left: 30px;
+}
+	#profile .span6
+	{
+		position: absolute;
+		bottom: 0;
+	}
+
+	#profImg
+	{
+		border: 10px solid #1c1f24;
+		border-bottom: 0px;
+		height: auto;
+		width: auto;
+	}
+
+	#playlist
+	{
+		background: #000;
+		opacity: 0.7;
+		margin: 10px;
+		margin-left: 180px;
+		margin-bottom: 0px;
+		padding: 10px;
+		height: 100%;
+		width: 200px;
+	}
+		.navplylis
+		{
+			color: #fff;
+		}
+		.navplylisact
+		{
+			color: #abc837;
+		}
+	
+	#player
+	{
+		height: 60px;
+		width: 970px;
+		background: #1c1f24;
+		display: block;
+		margin-left: -10px;
+		text-align: center;
+	}
+
+	.playli
+	{
+		display: block;
+		color: #f2f2f2;
+	}
+
+	#playline_box
+	{
+		width: 750px;
+		height: 100%;
+		padding-top: 10px;
+	}
+		.playact
+		{
+			padding-top: 20px;
+		}
+			.playact img
+			{
+				height: 25px;
+			}
+
+		#playline_info p
+		{
+			font-size: 12px;
+			float: left;
+		}
+			.playline_info_info
+			{
+				list-style: none;
+				float: right;
+				font-size: 12px;
+			}
+
+			.playline_info_info li
+			{
+				float: left;
+				margin-left: 5px;
+			}
+				.info_lis
+				{
+					color: #de8787;
+				}
+
+				.info_fav
+				{
+					color: #5fd38d;
+				}
+		
+	#playline_line_unplayd
+	{
+		margin-top: 25px;
+		background: #dbdee3;
+		width: 100%;
+		height: 3px;
+		border-radius: 3px;
+		text-align: left;
+	}
+
+	#playline_line_playd
+	{
+		background: #535d6c;
+		width: 24%;
+		height: 100%;
+		border-radius: 3px;
+		display: block;
+	}
+
+	#playline_line
+	{
+		padding-top: 2px;
+	}
+
+	.playmsg
+	{
+		padding-top: 20px;
+		font-size: 13px;
+	}
+
+.usermen
+{
+	color: #80b3ff;
+}
+
+.coverimg
+{
+	position: absolute;
+	width: 100%;
+	height: 350px;
+	z-index: -1;
+}
+
+/*	POST	*/
+.post_capsule
+{
+	text-align: right;
+	opacity: 0.9;
+	cursor: pointer;
+}
+	.post_capsule:hover
+	{
+		opacity: 1;
+	}
+
+	.post_photo_box
+	{
+		float: left;
+		width: 115px;
+		height: 145px;
+		margin-top: -5px;
+		margin-left: -5px;
+	}
+		.cap_cons
+		{
+			position: absolute;
+			height: 50px;
+			width: 50px;
+			margin-left: -115px;
+			z-index: 1;
+			border: 5px solid #1c1f24;
+		}
+
+		.cap_prod
+		{
+			position: absolute;
+			height: 80px;
+			width: 80px;
+			margin-top: 25px;
+			margin-left: -90px;
+			border: 5px solid #1c1f24;
+			z-index: 0;
+		}
+
+		.cap_go
+		{
+			position: absolute;
+			margin-top: 130px;
+			margin-left: 20px;
+			height: 30px;
+			width: auto;
+			font-weight: bold;
+			z-index: 2;
+		}
+
+	.post_name
+	{
+		margin-top: 0px;
+		color: rgb(150,150,150);
+		font-size: 13px;
+		line-height: 130%;
+	}
+
+	.post_act
+	{
+		color: #53676c;
+		font-size: 28px;
+		line-height: 130%;
+		letter-spacing: 1px;
+		font-family: bignoodle;
+	}
+
+	.post_song_info
+	{
+		font-size: 12px;
+	}
+
+	.post_post
+	{
+		font-size: 14px;
+		font-weight: bold;
+		color: #000;
+	}

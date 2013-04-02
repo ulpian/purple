@@ -1,81 +1,83 @@
 <?php
-// ---------------------------------------------------
-// Whiskers
-// -> whiskers package management
-// -> whiskers config and env var chk
-// ---------------------------------------------------
+# ---------------------------------------------------
+# Whiskers
+# -> whiskers package management
+# -> whiskers config and env var chk
+# ---------------------------------------------------
 class Whiskers
 {
-	// private status
+	# private status
 	protected $db_stat;
 	protected $sc_stat;
 	
-	// whisk
+	# whisk
 	static $whiskers_rt;
 	static $whisk;
 	
-	// ---------------------------------------------------
-	// On construct
-	// -> run whiskers.json check - wpm()
-	// -> run status check
-	// ---------------------------------------------------
-	function __construct()
+	# ---------------------------------------------------
+	# On construct
+	# -> run whiskers.json check - wpm()
+	# -> run status check
+	# ---------------------------------------------------
+	function __construct ()
 	{
-		// save path
+		# save path
 		Whiskers::$whiskers_rt = 'whiskers.json';
 		
-		if(file_exists(Whiskers::$whiskers_rt))
+		if (file_exists(Whiskers::$whiskers_rt))
 		{
-			// read file into array
+			# read file into array
 			Whiskers::$whisk = json_decode(file_get_contents(Whiskers::$whiskers_rt));
 			
-			// check root
+			# check root
 			Whiskers::rootchk();
+			
+			# run through composer actions for dependencies
 		}
 		else
 		{
-			// need whiskers or turn off in configuration
+			# need whiskers or turn off in configuration
 			throw new Exception("missing whiskers file, if you do not want whiskers, turn off this feature in your configuration");
 		}
 	}
 	
-	// ---------------------------------------------------
-	// static Whiskers Packege Manager (wpm) status
-	// -> see if dependencies have been updated
-	// ---------------------------------------------------
-	static function wpm_den_stat()
+	# ---------------------------------------------------
+	# static Whiskers Packege Manager (wpm) status
+	# -> see if dependencies have been updated
+	# ---------------------------------------------------
+	static function wpm_den_stat ()
 	{
-		// check if curr.den file exists
-		if(file_exists('mouse/cheese/den/curr.den.json'))
+		# check if curr.den file exists
+		if (file_exists('mouse/cheese/den/curr.den.json'))
 		{
-			// check if there is any difference
-			if(json_decode(file_get_contents('mouse/cheese/den/curr.den.json')) == Whiskers::$whisk->den)
+			# check if there is any difference
+			if (json_decode(file_get_contents('mouse/cheese/den/curr.den.json')) == Whiskers::$whisk->den)
             {
-                // no change
-                // *** WIP
+                # no change
+                # *** WIP
             }
             else
             {
-                // some change
-                // *** WIP
+                # some change
+                # *** WIP
             }
 		}
 	}
 	
-	// ---------------------------------------------------
-	// Checking root of the server to update .htaccess Rewritebase
-	// -> update if in different root
-	// ---------------------------------------------------
-	static function rootchk()
+	# ---------------------------------------------------
+	# Checking root of the server to update .htaccess Rewritebase
+	# -> update if in different root
+	# ---------------------------------------------------
+	static function rootchk ()
 	{
-		// check to see if path is changed
+		# check to see if path is changed
 		$rootpath = Whiskers::$whisk->root;
 		
-		if(file_exists('.htaccess'))
+		if (file_exists('.htaccess'))
 		{
-			if($rootpath == 'root')
+			if ($rootpath == 'root')
 			{
-				// need for Rewritebase
+				# need for Rewritebase
 				$hta_f = fopen('.htaccess','w') or die("cannot open .htaccess file");
 				
 $htac = "
@@ -94,13 +96,13 @@ RewriteRule ^([a-zA-Z0-9]+) index.php?page=$1 [L,NC]
 			}
 			else
 			{
-				// clean rootpath
-				if(!Whiskers::cleanroothpath($rootpath) == NULL)
+				# clean rootpath
+				if (!Whiskers::cleanroothpath($rootpath) == NULL)
 				{
-					// cleaned rootpath
+					# cleaned rootpath
 					$rootpath = Whiskers::cleanroothpath($rootpath);
 					
-					// need for Rewritebase
+					# need for Rewritebase
 					$hta_f = fopen('.htaccess','w') or die("cannot open .htaccess file");
 					
 				$htac = "
@@ -122,11 +124,11 @@ RewriteRule ^([a-zA-Z0-9]+) index.php?page=$1 [L,NC]
 			}
 		}
 	}
-	// ---------------------------------------------------
-	// .htaccess Rewritebase rootpath cleanup
-	// -> make some security checks *
-	// ---------------------------------------------------
-	// htaccess commands
+	# ---------------------------------------------------
+	# .htaccess Rewritebase rootpath cleanup
+	# -> make some security checks *
+	# ---------------------------------------------------
+	# htaccess commands
 	static $hta_cm = array
 	(
 		"RewriteEngine on","RewriteRule","RewriteCond",
@@ -135,11 +137,12 @@ RewriteRule ^([a-zA-Z0-9]+) index.php?page=$1 [L,NC]
 		"AddType","AddHandler","Options",
 		"AddHandler","order","deny",
 		"allow","DirectoryIndex","Redirect",
-		"IndexIgnore");
+		"IndexIgnore"
+	);
 	
-	static function cleanroothpath($rootpath)
+	static function cleanroothpath ($rootpath)
 	{
-		// check if folders / special symb
+		# check if folders / special symb
 		if(
 			strpos($rootpath, '/') != FALSE 
 			|| 
@@ -152,13 +155,8 @@ RewriteRule ^([a-zA-Z0-9]+) index.php?page=$1 [L,NC]
 			!in_array($rootpath, Whiskers::$hta_cm)
 		)
 		{
-			// has slashes so there is
+			# has slashes so there is
 			return utf8_encode(htmlentities($rootpath));
-		}
-		else
-		{
-			// return nothing
-			return NULL;
 		}
 	}
 }

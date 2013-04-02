@@ -10,7 +10,7 @@
 class vurr
 {
 	/**@type string|null name of the file to present data to*/
-	public $pgnm;
+	public $page;
 	
 	/**@type array|null aggregated arrays of data to present to the view*/
 	public $pdata = [];
@@ -21,14 +21,14 @@ class vurr
 	/**
 	 * construction to the page name to render and inject
 	 * 
-	 * @param string $pgnm page name
+	 * @param string $page page name
 	 */
-	function __construct (string $pgnm = null)
+	function __construct (string $page = null)
 	{
 		# if set then set
-		if (!empty($pgnm))
+		if (!empty($page))
 		{
-			$this->pgnm = $pgnm;
+			$this->page = $page;
 		}
 
 		# mustache class
@@ -38,30 +38,37 @@ class vurr
 	/**
 	 * The main page render
 	 * 
-	 * @param string $pgnm page name, null by default
-	 * @param string $suffix format suffix of the file, 'php' by default
+	 * @param string $page page name, null by default
+	 * @param string $suffix format suffix of the file, 'miew' by default
 	 * @param string $ten the template engine, default is mustache but support for 'twig', 'jinja' and 'none' simple php include with no template, is available
 	 */
-	function render ($pgnm = null, $suffix = 'miew', $ten = 'mustache')
+	function render ($page = null, $suffix = 'miew', $ten = 'mustache')
 	{	
 		# if set then set
-		if (!empty($pgnm) & !empty($this->pgnm))
+		if (!empty($page) & !empty($this->page))
 		{
-			$this->pgnm = $pgnm;
+			$this->page = $page;
 		}
-		elseif (empty($pgnm))
+		elseif (empty($page))
 		{
-			$pgnm = $this->pgnm;
+			$page = $this->page;
+		}
+		else
+		{
+			$this->page = $page;
 		}
 		
 			# path to view file
-			$vfile = 'vi/'.$this->pgnm.'.'.$suffix;
+			$vfile = 'vi/'.$this->page.'.'.$suffix;
 		
 		# check if data exists
 		if (!empty($this->pdata))
 		{
+						# appinfo data
+						$this->appInfo();
+
 			# decompose the pdata arr
-			$data = $this->pdata[$pgnm];
+			$data = $this->pdata[$page];
 			
 				# construct vars if not as mustache
 				if ($ten == 'none')
@@ -71,6 +78,10 @@ class vurr
 						${$dat_k} = $dat_v;
 					}
 				}
+		}
+		else
+		{
+			$data = null;
 		}
 		
 		# check if view exists
@@ -113,7 +124,7 @@ class vurr
 	function render_json ()
 	{
 		# data
-		$data = $this->pdata[$this->pgnm];
+		$data = $this->pdata[$this->page];
 		
 		# headers
 		header('HTTP/1.1 200 OK');
@@ -122,29 +133,95 @@ class vurr
 		header('Content-type: application/json');
 		
 		# decompose the pdata arr
-		$data = json_encode($this->pdata[$pgnm]);
+		$data = json_encode($this->pdata[$page]);
 		
 		return $data;
 	}
 	
 	/**
+	 * data -
 	 * Binding the data for a specific page
 	 * 
-	 * @param string $pgnm the file name of the view file to render
 	 * @param string $datnm name of the data, this will be the identifier of the data
 	 * @param array $data the array of data to bind
+	 * @param string $page the file name of the view file to render
 	 * 
 	 * @return void
+	 * @todo return status message
 	 */
-	function data ($datnm, array $data, string $pgnm = null)
+	function data ($datnm, array $data, string $page = null)
 	{
 		# if there is an empty page name
-		if (empty($pgnm))
+		if (empty($page))
 		{
-			$pgnm = $this->pgnm;
+			$page = $this->page;
 		}
 
 		# set data => name
-		$this->pdata[$pgnm][$datnm] = $data;
+		$this->pdata[$page][$datnm] = $data;
+	}
+
+	/**
+	 * plink (page link) -
+	 * Binding the page data (page contents include) to a specific page
+	 * 
+	 * @param string $datnm name of the page data, this will be the identifier of the page data
+	 * @param array $page the path to the page to include, begin from the 'vi' folder; e.g /vi/page.miew is simply 'page.miew', however subfolders must be included.
+	 * 
+	 * @return void
+	 * @todo return status message
+	 */
+	function plink ($datnm, $ppath, string $page = null)
+	{
+		# if there is an empty page name
+		if (empty($page))
+		{
+			$page = $this->page;
+		}
+
+		# get the current data to send to the page before render
+		$data = $this->pdata[$page];
+
+		# get the file contents of the page rendered
+		$pcon = file_get_contents('vi/'.$ppath);
+
+		$pcon = $this->mustake->render($pcon, $data);
+
+		$plinkarr = [
+					'page_uri' => $ppath,
+					'content' => $pcon
+					];
+
+		# set data => name
+		$this->pdata[$page]['page'][$datnm] = $plinkarr;
+	}
+
+	/**
+	 * 
+	 * 
+	 * @return void
+	 * @todo return status message
+	 */
+	function appInfo ()
+	{
+		$name = $_SERVER['SERVER_NAME'];
+		$port = $_SERVER['SERVER_PORT'];
+		$httpcon = $_SERVER['HTTP_CONNECTION'];
+
+		# app root
+		$app_root = Whiskers::$whisk->root;
+
+		($httpcon = 'keep-alive') ? $protocol = 'http://' : $protocol = 'https://';
+
+		$base_uri = $protocol.$name.':'.$port.$app_root;
+
+		# build appinfo array
+		$app_info = [
+						'base_uri' => $base_uri,
+						'app_root' => $app_root
+					];
+		
+		# set the data to package for the render
+		$this->data('appinfo', $app_info);
 	}
 }

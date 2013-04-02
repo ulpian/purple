@@ -19,6 +19,10 @@ class home_Controller extends moco
 
 		$this->miew->data('config', $config);
 
+		$usrinfo = ['name' => 'Ulpian', 'age' => '21'];
+
+		$this->miew->data('user', $usrinfo);
+
 		# send respFormat
 		$this->miew->render();
 	}

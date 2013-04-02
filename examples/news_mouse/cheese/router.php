@@ -20,7 +20,12 @@ require 'cheese/boots.php';
 # routing around
 class router
 {
-	/**@type string|null public url variable to*/
+	/**
+	 * url 
+	 * main url var that hold the url address 
+	 * 
+	 * @type string|null public url variable to
+	 */
 	public $url;
 	
 	# whiskroot
@@ -29,6 +34,10 @@ class router
 	/**@type array|null the path of the operations*/
 	private $path = [];
 	
+	/**
+	 * construct 
+	 * loading and setting first values
+	 */
 	function __construct ()
 	{
 		# compose the url
@@ -57,6 +66,7 @@ class router
 	}
 	
 	/**
+	 * Bake - 
 	 * method for loading the router and scripts
 	 */
 	function bake ()
@@ -128,16 +138,6 @@ class router
 						# no respFormat to send
 						$moco = new $cont;
 					
-					# run function
-					(method_exists($moco, $type))
-					?
-						# run functions
-						$moco->$type($vals)
-					:
-						NULL;
-					
-					if (empty($type))
-					{
 						# run set function -if available
 						(method_exists($moco, 'set'))
 						?
@@ -146,9 +146,20 @@ class router
 						:
 							NULL;
 
+					if (empty($type))
+					{
 						# render the default
 						$moco->render();
 					}
+					
+					# run function
+					if (method_exists($moco, $type))
+					{
+						# run functions
+						$moco->$type($vals);
+					}
+					elseif (!method_exists($moco, $type) & $step == 'home')
+					{}
 					else
 					{
 						throw new Exception('The '.$type.' method in this controller does not exist.');
@@ -166,9 +177,6 @@ class router
 			else
 			{
 				# no controller
-				throw new Exception('A controller file for this step does not exist.');
-				# so continue
-				continue;
 			}
 		}
 	}
