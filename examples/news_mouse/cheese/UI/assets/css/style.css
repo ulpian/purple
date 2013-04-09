@@ -204,6 +204,16 @@ hr
 		color: #53676c;
 		font-family: bebas;
 		font-size: 25px;
-		margin: 30px;
 		display: block;
+	}
+
+/*	SIGNUP		*/
+.login_button
+{
+	height: 120px;
+	opacity: 0.5;
+}
+	.login_button:hover
+	{
+		opacity: 1;
 	}

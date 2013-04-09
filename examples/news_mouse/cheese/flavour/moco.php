@@ -2,7 +2,7 @@
 
 /**
  * moco
- * interface for controllers - MOuse COntroller
+ * trait for controllers - MOuse COntroller
  * this includes dependency injection of the view
  * 
  * @author Ulpian Morina
