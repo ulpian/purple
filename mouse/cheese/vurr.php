@@ -61,12 +61,12 @@ class vurr
 			# path to view file
 			$vfile = 'vi/'.$this->page.'.'.$suffix;
 		
+		# appinfo data
+		$this->appInfo();
+
 		# check if data exists
 		if (!empty($this->pdata))
 		{
-						# appinfo data
-						$this->appInfo();
-
 			# decompose the pdata arr
 			$data = $this->pdata[$page];
 			
@@ -78,10 +78,6 @@ class vurr
 						${$dat_k} = $dat_v;
 					}
 				}
-		}
-		else
-		{
-			$data = null;
 		}
 		
 		# check if view exists
@@ -223,11 +219,12 @@ class vurr
 
 		# build appinfo array
 		$app_info = [
-						'base_uri' => $base_uri,
-						'app_root' => $app_root
+						'base' => $base_uri,
+						'root' => $app_root,
+						'cheese' => $base_uri.'cheese/'
 					];
 		
 		# set the data to package for the render
-		$this->data('appinfo', $app_info);
+		$this->data('app', $app_info);
 	}
 }

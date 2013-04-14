@@ -21,3 +21,6 @@ require_once 'cheese/vurr.php';
 		
 		# the controller flavour
 		include_once $flavour_path.'moco.php';
+
+		# the model flavour
+		include_once $flavour_path.'modo.php';

@@ -122,8 +122,11 @@ class router
 					
 					
 					# if more than one val
-					$vals = (!empty($vals) & strstr($vals,'-')) 
-						? explode('-', $vals) : array($vals);
+					$vals = (!empty($vals) & strstr($vals,'-') != FALSE) 
+						? 
+						$vals = explode('-', $vals) 
+						: 
+						$vals;
 						
 					# ****
 					# Running the class and methods
@@ -162,14 +165,14 @@ class router
 					{}
 					else
 					{
-						throw new Exception('The '.$type.' method in this controller does not exist.');
+						#throw new Exception('The '.$type.' method in this controller does not exist.');
 						# so continue
 						continue;
 					}
 				}
 				else
 				{
-					throw new Exception('A controller for this step does not exist.');
+					#throw new Exception('A controller for this step does not exist.');
 					# so continue
 					continue;
 				}
