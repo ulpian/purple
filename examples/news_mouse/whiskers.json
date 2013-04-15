@@ -1,9 +1,9 @@
 {
-  "name": "News Mouse",
+  "name": "NewsVille",
   "version": "0.1.0",
   "author": "Ulpian Morina <ulpianmorina@gmail.com>",
   "description": "a tiny news site built with the mouse framework",
-  "root": "/mouse-codebase/",
+  "root": "/CODEBASE/mouse/mouse/examples/news_mouse/",
   "contributors": [],
   "repository": {
     "type": "none",
