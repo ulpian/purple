@@ -2,6 +2,8 @@
 
 A tiny flexible MVC framework for agile web developers with some new concepts to rapid and easier development.
 
+[![Build Status](https://drone.io/github.com/ulpmori/purple/status.png)](https://drone.io/github.com/ulpmori/purple/latest)
+
 -----
 
 #### Notes & info
