@@ -39,7 +39,7 @@ service apache2 restart
 /sbin/service httpd restart
 </code></pre>
 
-###### Tip: if you are on Ubuntu then you will have [to allow .htaccess overide permission](https://help.ubuntu.com/community/EnablingUseOfApacheHtaccessFiles), if you have not already done so. Also run a2enmod php5.
+###### Tip: if you are on Ubuntu then you will have [to allow .htaccess overide permission](https://help.ubuntu.com/community/EnablingUseOfApacheHtaccessFiles), if you have not already done so. Also run "a2enmod php5" and "a2enmod rewrite".
 
 -----
 
