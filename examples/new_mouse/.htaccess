@@ -1,9 +1,0 @@
-RewriteEngine On
-
-RewriteCond %{REQUEST_FILENAME} !-l
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-
-Rewritebase /CODEBASE/mouse/mouse/examples/news_mouse/
-
-RewriteRule ^([a-zA-Z0-9]+) index.php?page=$1 [L,NC]
