@@ -1,0 +1,35 @@
+[
+	{
+		"title": "first Purple framework version released",
+		"date": "01/06/2013",
+		"author": "Ulpian Morina",
+		"content": "the Purple php web development framework is released with this blog example application called PurpleVIlle",
+		"tags": [
+				"purple",
+				"php",
+				"web framework",
+				"programming"
+			]
+	},
+	{
+		"title": "Having fun with PurpleVIlle",
+		"date": "01/06/2013",
+		"author": "Ulpian Morina",
+		"content": "playing around with this blog is fun, I don't wanna get into the whole hello world thing :)",
+		"tags": [
+				"blogging",
+				"posts",
+				"purple framework"
+			]
+	},
+	{
+		"title": "Soon to get sorting",
+		"date": "01/06/2013",
+		"author": "Ulpian Morina",
+		"content": "The json posts are not sorted properly and they will need to get some sort() filtering in php before they are passed to the page however the json file will always remain the same.",
+		"tags": [
+				"sorting",
+				"php"
+			]
+	}
+]

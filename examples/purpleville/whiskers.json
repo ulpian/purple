@@ -1,0 +1,24 @@
+{
+  "name": "PurpleVille",
+  "version": "0.1.0",
+  "author": "Ulpian Morina <ulpianmorina@gmail.com>",
+  "description": "a tiny news site built with the purple framework",
+  "root": "/",
+  "contributors": [],
+  "repository": {
+    "type": "none",
+    "url": "-"
+  },
+  "dbconfig": {
+  	"host": "localhost",
+  	"user": "root",
+  	"pass": "",
+  	"port": "8080"
+  },
+  "keywords": [
+    "example",
+    "news",
+    "mouse"
+  ],
+  "license": "MIT"
+ }
