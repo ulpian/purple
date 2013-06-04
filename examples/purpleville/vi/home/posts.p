@@ -12,7 +12,7 @@
 
 	<p>
 		{{#tags}}
-			<span class="label label-small label-info">{{.}}</span>
+			<span class="label label-info">{{.}}</span>
 		{{/tags}}
 	</p>
 </div>

@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "author": "Ulpian Morina <ulpianmorina@gmail.com>",
   "description": "a tiny news site built with the purple framework",
-  "root": "/",
+  "root": "/purple/purple/examples/purpleville/",
   "contributors": [],
   "repository": {
     "type": "none",

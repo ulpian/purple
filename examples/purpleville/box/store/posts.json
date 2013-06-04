@@ -29,7 +29,8 @@
 		"content": "The json posts are not sorted properly and they will need to get some sort() filtering in php before they are passed to the page however the json file will always remain the same.",
 		"tags": [
 				"sorting",
-				"php"
+				"php",
+				"programming"
 			]
 	}
 ]

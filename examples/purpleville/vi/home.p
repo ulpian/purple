@@ -42,8 +42,8 @@
 					<div class="navbar-inner">
 						<a class="brand" href="{{app.base}}"><b style="color:#6b00c9;">PurpleVille</b></a>
 						<ul class="nav">
+							<li><a href="#">#Programming</a></li>
 							<li><a href="#">#Startups</a></li>
-							<li><a href="#">#Enterprise</a></li>
 							<li><a href="#">#Science</a></li>
 						</ul>
 
