@@ -48,10 +48,10 @@ class Whiskers
 	static function wpm_den_stat ()
 	{
 		# check if curr.den file exists
-		if (file_exists('mouse/cheese/den/curr.den.json'))
+		if (file_exists('mouse/box/den/curr.den.json'))
 		{
 			# check if there is any difference
-			if (json_decode(file_get_contents('mouse/cheese/den/curr.den.json')) == Whiskers::$whisk->den)
+			if (json_decode(file_get_contents('mouse/box/den/curr.den.json')) == Whiskers::$whisk->den)
             {
                 # no change
                 # *** WIP

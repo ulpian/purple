@@ -1,4 +1,4 @@
-<?php
+<?
 session_start();
 
 /**
@@ -79,14 +79,26 @@ class router
 	/**
 	 * Bake - 
 	 * method for loading the router and scripts
+	 * 
+	 * @todo re-define routing concepts
+	 * @todo check security/attacks/cleaning
 	 */
 	function bake ()
 	{
 		# if no steps then default is home
-			if ($_SERVER["REQUEST_URI"] == $this->whiskroot)
-			{
-				$this->path = array('home');
-			}
+		if ($_SERVER["REQUEST_URI"] == $this->whiskroot)
+		{
+			$this->path = array('home');
+		}
+
+		# run get on vals
+		if (strpos($this->baseurl, '?'))
+		{
+			# if there is a ? then run get
+			$burl = explode('?', $this->baseurl);
+
+			$this->get($burl[1]);
+		}
 
 		# bake the routes based on section => (action => query) format
 		foreach ($this->path as $ord => $step)
@@ -130,13 +142,6 @@ class router
 						? $respFormat = (substr($this->path[$ord + 3], 0, 1) == '.') 
 							? str_replace('.', '', $this->path[$ord + 3]) : NULL 
 								: NULL;
-					
-					# run get on vals
-					if (strpos($this->baseurl, '?'))
-					{
-						# if there is a ? then run get
-						$this->get($vals);
-					}
 
 					# if more than one val
 					$vals = (!empty($vals) & strstr($vals,'-') != FALSE) 
@@ -153,32 +158,32 @@ class router
 					(isset($respFormat))
 					?
 						# send respFormat
-						$moco = new $cont($respFormat)
+						$poco = new $cont($respFormat)
 					:
 						# no respFormat to send
-						$moco = new $cont;
+						$poco = new $cont;
 					
 						# run set function -if available
-						(method_exists($moco, 'set'))
+						(method_exists($poco, 'set'))
 						?
 							# run set
-							$moco->set()
+							$poco->set()
 						:
 							NULL;
 
 					if (empty($type))
 					{
 						# render the default
-						$moco->render();
+						$poco->render();
 					}
 					
 					# run function
-					if (method_exists($moco, $type))
+					if (method_exists($poco, $type))
 					{
 						# run functions
-						$moco->$type($vals);
+						$poco->$type($vals);
 					}
-					elseif (!method_exists($moco, $type) & $step == 'home')
+					elseif (!method_exists($poco, $type) & $step == 'home')
 					{}
 					else
 					{

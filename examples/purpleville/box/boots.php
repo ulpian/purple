@@ -5,6 +5,10 @@ require_once 'box/whiskers.php';
 
 	# ==================
 	# TROVE
+	
+		# ==================
+		# COMPOSER
+		require __DIR__.'/trove/composer/vendor/autoload.php';
 
 	# mustache php
 	include_once 'box/trove/Mustache/Autoloader.php';
@@ -13,6 +17,9 @@ require_once 'box/whiskers.php';
 # vurr - view handling
 require_once 'box/vurr.php';
 
+# vurr - view handling
+require_once 'box/murl.php';
+
 	# ==================
 	# flavour packs
 
@@ -20,7 +27,7 @@ require_once 'box/vurr.php';
 	$flavour_path = 'box/flavour/';
 		
 		# the controller flavour
-		include_once $flavour_path.'moco.php';
+		include_once $flavour_path.'poco.php';
 
 		# the model flavour
-		include_once $flavour_path.'modo.php';
+		include_once $flavour_path.'podo.php';

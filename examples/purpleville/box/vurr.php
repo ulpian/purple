@@ -128,7 +128,7 @@ class vurr
 		# decompose the pdata arr
 		$data = json_encode($this->pdata);
 		
-		return $data;
+		echo $data;
 	}
 	
 	/**
@@ -142,7 +142,7 @@ class vurr
 	 * @return void
 	 * @todo return status message
 	 */
-	function data ($datnm, array $data, string $page = null)
+	function data ($datnm, array $data, $page = null)
 	{
 		# if there is an empty page name
 		if (empty($page))
